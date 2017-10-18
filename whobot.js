@@ -3,6 +3,13 @@ var users = require('./whobot.json');
 var randomWhoPrev = -1;
 
 module.exports = function (req, res, next) {
+  console.log('req');
+  console.log(req);
+  console.log('res');
+  console.log(res);
+  console.log('next');
+  console.log(next);
+
   var botPayload = {}; 
   var randomWho = -1;
 
