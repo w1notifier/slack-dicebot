@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var dicebot = require('./dicebot');
-var backend_user_roll = require('./backend_user_roll');
+var who = require('./who');
 
 var app = express();
 var port = process.env.PORT || 3000;
@@ -15,7 +15,7 @@ app.get('/', function (req, res) { res.status(200).send('Go away') });
 
 // dicebot
 app.post('/roll', dicebot);
-app.post('/backend_user_roll', backend_user_roll);
+app.post('/who', who);
 
 
 // basic error handler

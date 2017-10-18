@@ -1,11 +1,16 @@
 var request = require('request');
+var users = require('./who.json');
+var randomWhoPrev = -1;
 
 module.exports = function (req, res, next) {
+  var botPayload = {}; 
+  var randomWho = -1;
 
-  var botPayload = {};
-  var users = require('./backend_users_roll.json');
+  for (; randomWho == -1 || randomWhoPrev == randomWho;)
+    randomWho = Math.floor(Math.random()*users.length);
+  randomWhoPrev = randomWho;
 
-  botPayload.text = 'The winner is ' + users[Math.floor(Math.random()*users.length)];
+  botPayload.text = 'The winner is ' + users[randomWho];
   botPayload.channel = req.body.channel_id;
 
   send(botPayload, function (error, status, body) {
