@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var dicebot = require('./dicebot');
-var who = require('./who');
+var who = require('./whobot');
 
 var app = express();
 var port = process.env.PORT || 3000;

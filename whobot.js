@@ -1,5 +1,5 @@
 var request = require('request');
-var users = require('./who.json');
+var users = require('./whobot.json');
 var randomWhoPrev = -1;
 
 module.exports = function (req, res, next) {
@@ -10,7 +10,12 @@ module.exports = function (req, res, next) {
     randomWho = Math.floor(Math.random()*users.length);
   randomWhoPrev = randomWho;
 
-  botPayload.text = 'The winner is ' + users[randomWho];
+  var message = 'The winner is ';
+  if (req.body.text)
+    message = req.body.text + ' is given to ';
+
+  botPayload.text = message + users[randomWho];
+
   botPayload.channel = req.body.channel_id;
 
   send(botPayload, function (error, status, body) {
