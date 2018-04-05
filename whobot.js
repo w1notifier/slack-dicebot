@@ -29,7 +29,7 @@ module.exports = function (req, res, next) {
   message = message + users[randomWho];
   message = message + ' (from @' + req.body.user_name + ')';
   
-  botPayload.text = message + users[randomWho];
+  botPayload.text = message;
   botPayload.channel = req.body.channel_id;
 
   send(botPayload, function (error, status, body) {
