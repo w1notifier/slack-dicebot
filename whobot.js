@@ -17,9 +17,9 @@ module.exports = function (req, res, next) {
     randomWho = Math.floor(Math.random()*users.length);
   randomWhoPrev = randomWho;
 
-  var message = 'The winner is ';
+  var message = 'The winner is @';
   if (req.body.text)
-    message = req.body.text + ' is given to ';
+    message = req.body.text + ' is given to @';
 
   botPayload.text = message + users[randomWho];
 
