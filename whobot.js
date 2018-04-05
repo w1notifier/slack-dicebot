@@ -3,12 +3,18 @@ var users = require('./whobot.json');
 var randomWhoPrev = -1;
 
 module.exports = function (req, res, next) {
-  console.log('req');
-  console.log(req);
-  console.log('res');
-  console.log(res);
-  console.log('next');
-  console.log(next);
+  console.log(req.body);
+  /*token
+    team_id
+    team_domain
+    channel_id
+    channel_name
+    user_id
+    user_name
+    command
+    text
+    response_url
+    trigger_id*/
 
   var botPayload = {}; 
   var randomWho = -1;
@@ -20,9 +26,10 @@ module.exports = function (req, res, next) {
   var message = 'The winner is @';
   if (req.body.text)
     message = req.body.text + ' is given to @';
-
+  message = message + users[randomWho];
+  message = message + ' (from @' + req.body.user_name + ')';
+  
   botPayload.text = message + users[randomWho];
-
   botPayload.channel = req.body.channel_id;
 
   send(botPayload, function (error, status, body) {
