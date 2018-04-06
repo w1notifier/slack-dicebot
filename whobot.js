@@ -19,7 +19,7 @@ module.exports = function (req, res, next) {
   var botPayload = {}; 
   var randomWho = -1;
 
-  for (; randomWho == -1 || randomWhoPrev == randomWho;)
+  for (; randomWho == -1 || randomWhoPrev == randomWho || req.body.user_name == users[randomWho];)
     randomWho = Math.floor(Math.random()*users.length);
   randomWhoPrev = randomWho;
 
