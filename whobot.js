@@ -1,5 +1,6 @@
 var request = require('request');
 var users = require('./whobot.json');
+var Random = require("random-js");
 var randomWhoPrev = -1;
 
 module.exports = function (req, res, next) {
@@ -19,8 +20,10 @@ module.exports = function (req, res, next) {
   var botPayload = {}; 
   var randomWho = -1;
 
-  for (; randomWho == -1 || randomWhoPrev == randomWho || req.body.user_name == users[randomWho];)
-    randomWho = Math.floor(Math.random()*users.length);
+  for (; randomWho == -1 || randomWhoPrev == randomWho || req.body.user_name == users[randomWho];){
+    var random = new Random(Random.engines.mt19937().autoSeed());
+    randomWho = random.integer(0, users.length - 1);
+  }
   randomWhoPrev = randomWho;
 
   var message = 'The winner is @';
