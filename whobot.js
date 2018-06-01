@@ -26,11 +26,12 @@ module.exports = function (req, res, next) {
   }
   randomWhoPrev = randomWho;
 
-  var message = 'The winner is @';
+  var message = 'req.body.user_name gives a ';
   if (req.body.text)
-    message = req.body.text + ' is given to @';
-  message = message + users[randomWho];
-  message = message + ' from @' + req.body.user_name;
+    message = message + req.body.text;
+  else
+    message = message + "nullptr";
+  message = message + ' to @' + users[randomWho];
   
   botPayload.text = message;
   botPayload.channel = req.body.channel_id;
