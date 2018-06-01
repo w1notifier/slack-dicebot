@@ -26,7 +26,7 @@ module.exports = function (req, res, next) {
   }
   randomWhoPrev = randomWho;
 
-  var message = 'req.body.user_name gives a ';
+  var message = req.body.user_name + 'gives a ';
   if (req.body.text)
     message = message + req.body.text;
   else
