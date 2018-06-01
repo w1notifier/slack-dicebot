@@ -30,7 +30,7 @@ module.exports = function (req, res, next) {
   if (req.body.text)
     message = req.body.text + ' is given to @';
   message = message + users[randomWho];
-  message = message + ' (from @' + req.body.user_name + ')';
+  message = message + ' from @' + req.body.user_name;
   
   botPayload.text = message;
   botPayload.channel = req.body.channel_id;
