@@ -20,7 +20,7 @@ module.exports = function (req, res, next) {
   var botPayload = {}; 
   var randomWho = -1;
 
-  for (; randomWho == -1 || randomWhoPrev == randomWho || req.body.user_name == users[randomWho];){
+  for (; randomWho == -1 || randomWhoPrev == randomWho || users[randomWhoPrev] == users[randomWho] || req.body.user_name == users[randomWho];){
     var random = new Random(Random.engines.mt19937().autoSeed());
     randomWho = random.integer(0, users.length - 1);
   }
